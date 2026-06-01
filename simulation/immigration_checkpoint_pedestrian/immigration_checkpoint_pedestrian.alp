@@ -112,7 +112,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1779783704436</Id>
 					<Name><![CDATA[completedTravellers]]></Name>
-					<X>1560</X><Y>420</Y>
+					<X>1560</X><Y>300</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -127,7 +127,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1779783708587</Id>
 					<Name><![CDATA[totalSystemTime]]></Name>
-					<X>1560</X><Y>460</Y>
+					<X>1560</X><Y>340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -142,7 +142,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1779783711323</Id>
 					<Name><![CDATA[travellersOverThreshold]]></Name>
-					<X>1560</X><Y>500</Y>
+					<X>1560</X><Y>380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -157,7 +157,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780042526390</Id>
 					<Name><![CDATA[extraCheckTravellers]]></Name>
-					<X>1560</X><Y>390</Y>
+					<X>1560</X><Y>270</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -172,7 +172,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780042732661</Id>
 					<Name><![CDATA[securityBusy]]></Name>
-					<X>1560</X><Y>360</Y>
+					<X>1560</X><Y>240</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -187,7 +187,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780042748147</Id>
 					<Name><![CDATA[immigrationBusy]]></Name>
-					<X>1560</X><Y>330</Y>
+					<X>1560</X><Y>210</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -202,7 +202,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780042776423</Id>
 					<Name><![CDATA[totalSecurityWait]]></Name>
-					<X>1560</X><Y>300</Y>
+					<X>1560</X><Y>180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -217,7 +217,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780042792717</Id>
 					<Name><![CDATA[totalImmigrationWait]]></Name>
-					<X>1560</X><Y>270</Y>
+					<X>1560</X><Y>150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -232,7 +232,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780043977295</Id>
 					<Name><![CDATA[securityWaitCount]]></Name>
-					<X>1560</X><Y>240</Y>
+					<X>1560</X><Y>120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -247,7 +247,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780044003660</Id>
 					<Name><![CDATA[immigrationWaitCount]]></Name>
-					<X>1560</X><Y>210</Y>
+					<X>1560</X><Y>90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -262,7 +262,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780044711828</Id>
 					<Name><![CDATA[securityQueueCount]]></Name>
-					<X>1560</X><Y>180</Y>
+					<X>1560</X><Y>60</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -277,7 +277,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1780044722685</Id>
 					<Name><![CDATA[immigrationQueueCount]]></Name>
-					<X>1560</X><Y>150</Y>
+					<X>1560</X><Y>30</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1205,7 +1205,7 @@ traceln("Vehicle arrived at time " + time() +
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1779783840465</Id>
 					<Name><![CDATA[avgSecurityWait]]></Name>
-					<X>1560</X><Y>540</Y>
+					<X>1560</X><Y>420</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1217,7 +1217,7 @@ traceln("Vehicle arrived at time " + time() +
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1779784233845</Id>
 					<Name><![CDATA[avgImmigrationWait]]></Name>
-					<X>1560</X><Y>580</Y>
+					<X>1560</X><Y>460</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1229,7 +1229,7 @@ traceln("Vehicle arrived at time " + time() +
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1780042990155</Id>
 					<Name><![CDATA[avgSystemTime]]></Name>
-					<X>1560</X><Y>620</Y>
+					<X>1560</X><Y>500</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1241,7 +1241,7 @@ traceln("Vehicle arrived at time " + time() +
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1780043023137</Id>
 					<Name><![CDATA[pctOverThreshold]]></Name>
-					<X>1560</X><Y>660</Y>
+					<X>1560</X><Y>540</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1253,7 +1253,7 @@ traceln("Vehicle arrived at time " + time() +
 					<ReturnType><![CDATA[int]]></ReturnType>
 					<Id>1780044327873</Id>
 					<Name><![CDATA[securityAvailable]]></Name>
-					<X>1560</X><Y>690</Y>
+					<X>1560</X><Y>570</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1265,12 +1265,70 @@ traceln("Vehicle arrived at time " + time() +
 					<ReturnType><![CDATA[int]]></ReturnType>
 					<Id>1780044371269</Id>
 					<Name><![CDATA[immigrationAvailable]]></Name>
-					<X>1560</X><Y>720</Y>
+					<X>1560</X><Y>600</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[return numImmigrationCounters - immigrationBusy;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1780307417705</Id>
+					<Name><![CDATA[exportRunSummary]]></Name>
+					<X>1560</X><Y>640</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[try {
+    java.io.File dir = new java.io.File("outputs");
+    dir.mkdirs();
+
+    java.io.File file = new java.io.File(dir, "anylogic_run_results.csv");
+
+    boolean writeHeader = !file.exists() || file.length() == 0;
+
+    java.io.PrintWriter out = new java.io.PrintWriter(
+        new java.io.FileWriter(file, true)
+    );
+
+    if (writeHeader) {
+        out.println(
+            "busIntervalMinutes," +
+            "minBusPassengers," +
+            "maxBusPassengers," +
+            "numSecurityCounters," +
+            "numImmigrationCounters," +
+            "securityCheckProbability," +
+            "completedTravellers," +
+            "avgSecurityWait_min," +
+            "avgImmigrationWait_min," +
+            "avgSystemTime_min"
+        );
+    }
+
+    out.println(
+        busIntervalMinutes + "," +
+        minBusPassengers + "," +
+        maxBusPassengers + "," +
+        numSecurityCounters + "," +
+        numImmigrationCounters + "," +
+        securityCheckProbability + "," +
+        completedTravellers + "," +
+        roundToDecimal(avgSecurityWait() / 60.0, 2) + "," +
+        roundToDecimal(avgImmigrationWait() / 60.0, 2) + "," +
+        roundToDecimal(avgSystemTime() / 60.0, 2)
+    );
+
+    out.close();
+
+    traceln("Run results exported to: " + file.getAbsolutePath());
+
+} catch (Exception e) {
+    traceln("CSV export error: " + e.getMessage());
+}]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -4817,6 +4875,7 @@ totalSystemTime += systemTime;
 			<MaximumMemory>512</MaximumMemory>
 			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
+			<AfterSimulationRunCode><![CDATA[root.exportRunSummary();]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
 			<VmArgs><![CDATA[]]></VmArgs>
