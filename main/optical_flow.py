@@ -312,11 +312,6 @@ def draw_grid_flow(frame, cell_rows, roi_polygon, roi_mask, fps, smoothed_speed_
     return vis
 
 
-def save_mask_preview(mask, out_path):
-    preview = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
-    cv2.imwrite(str(out_path), preview)
-
-
 def fmt(value, ndigits=6):
     """Format numbers for CSV while keeping missing values blank."""
     if value is None:
@@ -413,7 +408,9 @@ def run_optical_flow(
     video_path = Path(video_path)
 
     selected_parent_dir = Path(out_dir)
-    out_dir = selected_parent_dir / "optical flow"
+
+    RUN_NAME = f"{video_path.stem}_optical_flow"
+    out_dir = selected_parent_dir / RUN_NAME
     ensure_dir(out_dir)
 
     if not video_path.is_file():
@@ -445,14 +442,10 @@ def run_optical_flow(
     roi_mask = make_roi_mask(first_frame.shape, roi_polygon, use_full_frame_if_no_polygon)
 
     base_name = video_path.stem
-    mask_preview_path = out_dir / f"{base_name}_roi_mask.png"
     arrow_csv_path = out_dir / f"{base_name}_arrow_flow_by_frame.csv"
     per_second_csv_path = out_dir / f"{base_name}_per_second_speed_summary.csv"
     overall_csv_path = out_dir / f"{base_name}_overall_flow_summary.csv"
     out_video_path = out_dir / f"{base_name}_flow_annotated.mp4"
-
-    save_mask_preview(roi_mask, mask_preview_path)
-    print("Saved mask preview:", mask_preview_path)
 
     writer = None
     if save_video:
@@ -610,7 +603,6 @@ def run_optical_flow(
     print("Done.")
 
     return {
-        "mask_preview": str(mask_preview_path),
         "arrow_csv": str(arrow_csv_path),
         "per_second_csv": str(per_second_csv_path),
         "overall_csv": str(overall_csv_path),

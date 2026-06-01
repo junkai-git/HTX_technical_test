@@ -270,8 +270,8 @@ class TrackingFrame(tk.Frame):
         output_folder_button.pack(pady=5)    
         
         #run tracking button
-        start_tracking_button = tk.Button(self, text="Start tracking", font = ("Segoe UI",9,"bold"), command=self.track_mp4)
-        start_tracking_button.pack(pady=40)
+        self.start_tracking_button = tk.Button(self, text="Start tracking", font = ("Segoe UI",9,"bold"), command=self.track_mp4_ui)
+        self.start_tracking_button.pack(pady=40)
         
 
         #back to main menu buton
@@ -304,7 +304,7 @@ class TrackingFrame(tk.Frame):
         self.output_folder_path = path
         self.output_folder_label.config(text=f"Output: {path}")
 
-    def track_mp4(self):
+    def track_mp4_ui(self):
         missing = []
 
         if not hasattr(self, "input_video_path") or not self.input_video_path:
@@ -324,7 +324,25 @@ class TrackingFrame(tk.Frame):
         # If no .pt file was selected, model_path becomes None
         model_path = getattr(self, "model_path", None)
 
-        tracking.track_mp4(model_path, input_path, output_path)
+        try:
+            self.start_tracking_button.config(state="disabled")
+            self.controller.update_idletasks()
+
+            outputs = tracking.track_mp4(model_path, input_path, output_path)
+
+            messagebox.showinfo(
+                "Tracking complete",
+                "Tracking finished successfully.\n\n"
+                f"Model used:\n{outputs['model_used']}\n\n"
+                f"Results folder:\n{outputs['run_folder']}\n\n"
+                f"CSV file:\n{outputs['csv']}"
+            )
+
+        except Exception as e:
+            messagebox.showerror("Error during tracking", str(e))
+
+        finally:
+            self.start_tracking_button.config(state="normal")
 
 class TrainingFrame(tk.Frame):
     def __init__(self, parent, controller):
