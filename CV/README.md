@@ -81,4 +81,4 @@ ui.py
 
 For tracking, without a selection of model it will run the base yolo11n.pt model. For the test video provided I have trained a seperate model called best.pt. Different cameras will have different angles and FOV so a dedicated model should be trained for each cameras in the future to drastically improve accuracy.
 
-Additionally there are functions like the counting of higher density crowds called predict_single.py and predict_video.py that has yet to be added into the UI (due to time constraints) but are functioning scripts by themselves.
+Additionally there are functions like the counting of higher density crowds called predict_single.py and predict_video.py that has yet to be added into the UI (due to time constraints) but are functioning scripts by themselves. For those to work please download the models from https://huggingface.co/junkaitan/HTX_technical_test and place SHA_model.pth into a folder named "checkpoints" and vgg16_bn-6c64b313.pth into "pretrained".
