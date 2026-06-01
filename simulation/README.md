@@ -66,7 +66,7 @@ Pedestrians are released into the checkpoint flow
 
 The exact interval and group size can be adjusted through model parameters.
 
-## Configurable Simulation Parameters
+## Simulation Parameters
 
 The model parameters can be modified inside the `Main` agent in AnyLogic.
 
@@ -75,15 +75,16 @@ Common parameters include:
 | Parameter | Description |
 |---|---|
 | `numImmigrationCounters` | Number of available immigration counters |
-| `numBagCheckCounters` | Number of available bag-check stations |
+| `numSecurityCounters` | Number of available bag-check stations |
 | `numInterrogationCounters` | Number of available interrogation stations |
-| `vehicleInterval` | Time interval between bus/plane arrivals |
-| `minVehiclePassengers` | Minimum number of pedestrians per vehicle arrival |
-| `maxVehiclePassengers` | Maximum number of pedestrians per vehicle arrival |
-| `bagCheckProbability` | Probability that a pedestrian is selected for bag check |
-| `interrogationProbability` | Probability that a bag-check pedestrian is sent for further interrogation |
-| `escortOutProbability` | Probability that an interrogated or additionally checked pedestrian is escorted out |
-| `additionalImmigrationCheckProbability` | Probability that a pedestrian requires extra immigration checks |
+| `busIntervalMinutes` | Time interval between bus/plane arrivals |
+| `minBusPassengers` | Minimum number of pedestrians per vehicle arrival |
+| `maxBusPassengers` | Maximum number of pedestrians per vehicle arrival |
+| `securityCheckProbability` | Probability that a pedestrian is selected for bag check |
+| `extraSecurityCheckProbability` | Probability that a pedestrian that is selected for bag check needs further check|
+| `extraSecurityCheckFailProbability` | Probability that a pedestrian fails the further check and is escorted out |
+| `extraImmigrationCheckProbability` | Probability that a pedestrian is sent for further interrogation after immigration check|
+| `extraImmigrationCheckFailProbability` | Probability that an interrogated pedestrian is escorted out |
 
 Processing-time parameters can also be configured, such as:
 
@@ -91,8 +92,8 @@ Processing-time parameters can also be configured, such as:
 |---|---|
 | `immigrationProcessTime` | Time taken for normal immigration processing |
 | `bagCheckProcessTime` | Time taken for bag checking |
-| `interrogationProcessTime` | Time taken for interrogation |
-| `additionalImmigrationCheckTime` | Time taken for additional immigration checks |
+| `extraSecurityCheckProcessTime` | Time taken for interrogation |
+| `extraImmigrationCheckTime` | Time taken for additional immigration checks |
 
 ## Dashboard Metrics
 
