@@ -17,6 +17,7 @@ The simulation is designed to help explore queue build-up, traveller flow, and t
 This model uses:
 
 - AnyLogic Pedestrian Library
+- AnyLogic Process Modelling Library
 
 ## Simulation Flow
 
