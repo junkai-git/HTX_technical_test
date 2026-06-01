@@ -12,6 +12,7 @@ The UI supports the following computer vision workflows:
 
 - Video preprocessing
 - Video cropping
+- Training of own models
 - Optical flow analysis to estimate the movement speed of large crowds
 - Object/person tracking for smaller crowds
 - Plotting tracked pedestrian points using CSV data
