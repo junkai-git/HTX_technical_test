@@ -155,8 +155,7 @@ Passenger group size
 Probability of bag checks
 Probability of failing bag checks
 Probability of interrogation
-Probability of additional immigration checks
-Processing-time distributions
+Processing-time distributions (These need to be edited using their respective service icons)
 ```
 
 Changing these parameters allows the user to test different checkpoint operating conditions.
