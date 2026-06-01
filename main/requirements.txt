@@ -1,6 +1,12 @@
+--extra-index-url https://download.pytorch.org/whl/cu128
+
 ultralytics
 opencv-python
 pandas
 matplotlib
 numpy
 PyYAML
+Pillow
+torch
+torchvision
+torchaudio

@@ -4,9 +4,21 @@ from pathlib import Path
 import training
 import tracking
 import plotting
+import optical_flow
 import preprocessing
 import pandas as pd
 
+def add_description(parent, text):
+    desc_label = tk.Label(
+        parent,
+        text=text,
+        font=("Arial", 10),
+        wraplength=560,
+        justify="center",
+        fg="gray25"
+    )
+    desc_label.pack(pady=(0, 15))
+    return desc_label
 
 class App(tk.Tk):
     def __init__(self):
@@ -23,7 +35,7 @@ class App(tk.Tk):
 
         self.frames = {}
 
-        for ScreenClass in (MainMenu, PreProcessingFrame, TrainingFrame, TrackingFrame, PlottingFrame, CrowdAnalyticsFrame):
+        for ScreenClass in (MainMenu, PreProcessingFrame, TrainingFrame, TrackingFrame, PlottingFrame, OpticalFlowFrame):
             frame = ScreenClass(parent=container, controller=self)
             name = ScreenClass.__name__
             self.frames[name] = frame
@@ -42,6 +54,12 @@ class MainMenu(tk.Frame):
         self.controller = controller
 
         tk.Label(self, text="Main Menu", font=("Arial", 18, "bold", "underline")).pack(pady=40)
+
+        add_description(
+            self,
+            "Select one of the available computer vision tools below. "
+            "Each section handles a different part of the workflow."
+        )
 
         tk.Button(
             self,
@@ -77,8 +95,8 @@ class MainMenu(tk.Frame):
 
         tk.Button(
             self,
-            text="Crowd Analytics",
-            command=lambda: controller.show_frame("CrowdAnalyticsFrame"),
+            text="Optical Flow",
+            command=lambda: controller.show_frame("OpticalFlowFrame"),
             width=20,
             font=("Arial", 12)
         ).pack(pady=20)
@@ -91,6 +109,13 @@ class PreProcessingFrame(tk.Frame):
         # preprocessing window title
         title_label = tk.Label(self, text="Preprocessing video", font=("Arial", 14, "bold"))
         title_label.pack(pady=10)
+
+        add_description(
+            self,
+            "Use this page to crop a selected region from a video. "
+            "Choose a video, select an output folder, then drag a region of interest on the first frame."
+        )
+
 
         # select video button
         self.vid_label = tk.Label(self, text="Video: (none selected yet)", wraplength=650)
@@ -116,7 +141,7 @@ class PreProcessingFrame(tk.Frame):
     def choose_vid(self):
         path = filedialog.askopenfilename(
             title="Select video file",
-            filetypes=[("mp4 files", "*.mp4"), ("All files", "*.*")]
+            filetypes=[("mp4 files", "*.mp4, *.mov"), ("All files", "*.*")]
         )
         if not path:
             return  # user cancelled
@@ -150,6 +175,16 @@ class PlottingFrame(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller  # main app (so you can navigate if needed)
+
+        #plotting window title
+        title_label = tk.Label(self, text="Plotting csv", font=("Arial", 14, "bold"))
+        title_label.pack(pady=10)
+
+        add_description(
+            self,
+            "Use this page to visualize tracking results from a CSV file. "
+            "The plot shows the movement of detected object centers across video frames."
+        )
 
         title_label = tk.Label(self, text="Choose csv file", font=("Arial", 14, "bold"))
         title_label.pack(pady=10)
@@ -203,8 +238,18 @@ class TrackingFrame(tk.Frame):
         title_label = tk.Label(self, text="Tracking", font=("Arial", 14, "bold"))
         title_label.pack(pady=10)
 
+        add_description(
+            self,
+            "Use this page to track objects in a video. "
+            "You may choose a custom YOLO weight file, or leave it empty to use the default YOLO model."
+        )
+
         #select weight button
-        self.pt_label = tk.Label(self, text="Weight: (none selected yet)", wraplength=650)
+        self.pt_label = tk.Label(
+            self,
+            text="Weight: default YOLO model will be used if none selected",
+            wraplength=650
+        )
         self.pt_label.pack(pady=5)
 
         pt_button = tk.Button(self, text="Choose .pt file", command=self.choose_pt)
@@ -245,7 +290,7 @@ class TrackingFrame(tk.Frame):
     def choose_mp4(self):
         path = filedialog.askopenfilename(
             title="Select video to track",
-            filetypes=[("pt files", "*.mp4"), ("All files", "*.*")])
+            filetypes=[(".mp4 files", "*.mp4, *.mov"), ("All files", "*.*")])
         if not path:
             return  # user cancelled
         self.input_video_path = path
@@ -261,25 +306,24 @@ class TrackingFrame(tk.Frame):
 
     def track_mp4(self):
         missing = []
-        # Check for required attributes and whether they are non-empty
+
         if not hasattr(self, "input_video_path") or not self.input_video_path:
             missing.append("input video")
 
         if not hasattr(self, "output_folder_path") or not self.output_folder_path:
             missing.append("output folder")
 
-        if not hasattr(self, "model_path") or not self.model_path:
-            missing.append("model file (.pt)")
-
         if missing:
-            # Build a nice error message
             msg = "Please select the following before tracking:\n- " + "\n- ".join(missing)
             messagebox.showerror("Missing inputs", msg)
-            return  # stop here, don't call tracking
-        
+            return
+
         input_path = self.input_video_path
         output_path = self.output_folder_path
-        model_path = self.model_path
+
+        # If no .pt file was selected, model_path becomes None
+        model_path = getattr(self, "model_path", None)
+
         tracking.track_mp4(model_path, input_path, output_path)
 
 class TrainingFrame(tk.Frame):
@@ -293,6 +337,12 @@ class TrainingFrame(tk.Frame):
         # --- UI widgets (same as your old root-based ones, but on self) ---
         title_label = tk.Label(self, text="Simple YOLO Training UI", font=("Arial", 14, "bold"))
         title_label.pack(pady=10)
+
+        add_description(
+            self,
+            "Use this page to train a YOLO model. "
+            "Choose a dataset YAML file, select an output folder, choose the number of epochs, then start training."
+        )
 
         self.yaml_label = tk.Label(self, text="YAML: (none selected yet)", wraplength=650)
         self.yaml_label.pack(pady=5)
@@ -388,33 +438,114 @@ class TrainingFrame(tk.Frame):
         finally:
             self.train_button.config(state="normal")
 
-class CrowdAnalyticsFrame(tk.Frame):
+class OpticalFlowFrame(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
-        self.controller = controller  # main app (so you can navigate if needed)
+        self.controller = controller
 
-        title_label = tk.Label(self, text="Choose csv file", font=("Arial", 14, "bold"))
+        title_label = tk.Label(self, text="Optical Flow", font=("Arial", 14, "bold"))
         title_label.pack(pady=10)
 
-        #select csv button
-        self.csv_label = tk.Label(self, text="csv: (none selected yet)", wraplength=650)
-        self.csv_label.pack(pady=5)
+        description = tk.Label(
+            self,
+            text=(
+                "Use this page to run optical flow on a selected video. "
+                "The script will output arrow-level motion vectors, per-second speed summaries, "
+                "overall flow statistics, and an annotated video."
+            ),
+            font=("Arial", 10),
+            wraplength=560,
+            justify="center",
+            fg="gray25"
+        )
+        description.pack(pady=(0, 15))
 
-        csv_button = tk.Button(self, text="Choose csv", command=self.choose_csv)
-        csv_button.pack(pady=5)
+        self.video_label = tk.Label(self, text="Video: (none selected yet)", wraplength=650)
+        self.video_label.pack(pady=5)
 
-        # -------- Button callbacks --------
-    def choose_csv(self):
+        video_button = tk.Button(self, text="Choose video", command=self.choose_video)
+        video_button.pack(pady=5)
+
+        self.output_folder_label = tk.Label(self, text="Output folder: (none selected yet)", wraplength=650)
+        self.output_folder_label.pack(pady=5)
+
+        output_button = tk.Button(self, text="Choose output folder", command=self.choose_output_folder)
+        output_button.pack(pady=5)
+
+        self.run_button = tk.Button(
+            self,
+            text="Run Optical Flow",
+            font=("Segoe UI", 9, "bold"),
+            command=self.run_optical_flow
+        )
+        self.run_button.pack(pady=40)
+
+        tk.Button(
+            self,
+            text="Back to Main Menu",
+            command=lambda: controller.show_frame("MainMenu")
+        ).place(x=10, y=10)
+
+    def choose_video(self):
         path = filedialog.askopenfilename(
-            title="Select model csv file",
-            filetypes=[("csv files", "*.csv"), ("All files", "*.*")])    
-        if not path:
-            return  # user cancelled
-        self.csv_path = Path(path)
-        self.csv_label.config(text=f"csv: {path}")
+            title="Select video file",
+            filetypes=[
+                ("Video files", "*.mp4 *.mov *.avi *.mkv"),
+                ("All files", "*.*")
+            ]
+        )
 
-    # def plot_speed_histogram(self):
-    #     plotting.plot_speed_histogram(self.csv_path)
+        if not path:
+            return
+
+        self.video_path = path
+        self.video_label.config(text=f"Video: {path}")
+
+    def choose_output_folder(self):
+        path = filedialog.askdirectory(title="Select output folder")
+
+        if not path:
+            return
+
+        self.output_folder_path = path
+        self.output_folder_label.config(text=f"Output folder: {path}")
+
+    def run_optical_flow(self):
+        missing = []
+
+        if not hasattr(self, "video_path") or not self.video_path:
+            missing.append("video")
+
+        if not hasattr(self, "output_folder_path") or not self.output_folder_path:
+            missing.append("output folder")
+
+        if missing:
+            msg = "Please select the following before running optical flow:\n- " + "\n- ".join(missing)
+            messagebox.showerror("Missing inputs", msg)
+            return
+
+        try:
+            self.run_button.config(state="disabled")
+            self.controller.update_idletasks()
+
+            outputs = optical_flow.run_optical_flow(
+                self.video_path,
+                self.output_folder_path
+            )
+
+            messagebox.showinfo(
+                "Optical flow complete",
+                "Optical flow finished successfully.\n\n"
+                f"Arrow CSV:\n{outputs['arrow_csv']}\n\n"
+                f"Per-second summary:\n{outputs['per_second_csv']}\n\n"
+                f"Overall summary:\n{outputs['overall_csv']}"
+            )
+
+        except Exception as e:
+            messagebox.showerror("Error during optical flow", str(e))
+
+        finally:
+            self.run_button.config(state="normal")
 
 if __name__ == "__main__":
     app = App()
