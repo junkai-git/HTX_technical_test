@@ -1,15 +1,29 @@
-# HTX_technical_test
+# HTX Technical Test
 
-•	Setup instructions
+This project consists of two main folders:
 
+## 1. Computer Vision UI
+This folder contains the user interface and backend components for the computer vision system. It includes features such as video processing, tracking, analytics, and live data visualization.
 
-•	Engine version used
+The folder has its own `README.md` file which explains:
+- System architecture
+- Setup and installation
+- Model usage
+- Data processing workflow
+- UI functionality
 
+---
 
-•	Run instructions
+## 2. Security & Immigration Simulation
+This folder contains the simulation system for security and immigration processes, similar to a checkpoint environment. The simulation models traveller movement, queue handling, and checkpoint operations for analysis and testing purposes.
 
+The folder has its own `README.md` file which explains:
+- Simulation structure
+- Agent behavior
+- Queue and process logic
+- Parameters and metrics
+- How to run the simulation
 
-•	Build instructions, if applicable
+---
 
-
-•	How to modify simulation parameters
+Each folder is designed to work independently and contains additional documentation for more detailed explanations and setup instructions.
