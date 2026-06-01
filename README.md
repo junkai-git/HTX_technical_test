@@ -1,15 +1,3 @@
-# HTX_technical_test
-
-•	Setup instructions
+# HTX technical test
 
 
-•	Engine version used
-
-
-•	Run instructions
-
-
-•	Build instructions, if applicable
-
-
-•	How to modify simulation parameters
