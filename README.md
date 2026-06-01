@@ -5,7 +5,6 @@ This project consists of two main folders:
 ## 1. Computer Vision UI
 This folder contains the user interface and backend components for the computer vision system. It includes features such as video processing, tracking, analytics, and live data visualization.
 
-=======
 The folder has its own `README.md` file.
 
 ---
