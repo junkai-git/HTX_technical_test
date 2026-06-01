@@ -1,0 +1,13 @@
+metric,value
+total_processed_frames,747
+active_motion_frames,747
+duration_sec,24.889215
+fps,30.013000
+mean_speed_px_s_all_frames,48.843013
+variance_speed_px_s2_all_frames,7.847073
+mean_speed_px_s_active_frames,48.843013
+variance_speed_px_s2_active_frames,7.847073
+overall_direction_deg_circular,177.208152
+direction_circular_variance,0.005977
+direction_circular_std_deg,6.273775
+direction_resultant_length,0.994023
