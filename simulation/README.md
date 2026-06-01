@@ -76,7 +76,6 @@ Common parameters include:
 |---|---|
 | `numImmigrationCounters` | Number of available immigration counters |
 | `numSecurityCounters` | Number of available bag-check stations |
-| `numInterrogationCounters` | Number of available interrogation stations |
 | `busIntervalMinutes` | Time interval between bus/plane arrivals |
 | `minBusPassengers` | Minimum number of pedestrians per vehicle arrival |
 | `maxBusPassengers` | Maximum number of pedestrians per vehicle arrival |
