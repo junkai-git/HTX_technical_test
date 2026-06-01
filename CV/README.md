@@ -4,7 +4,7 @@
 
 This project provides a Python-based computer vision UI for running video preprocessing and analysis workflows. The UI is intended to support the extraction and visualisation of crowd-related information that can be used for downstream simulation or analysis.
 
-The program includes tools for preprocessing videos, estimating crowd movement, tracking smaller groups of pedestrians, and plotting tracked positions from CSV data.
+The program includes tools for preprocessing videos, estimating crowd movement, tracking of small group of pedestrians, and plotting tracked positions from CSV data.
 
 ## Features
 
@@ -75,8 +75,10 @@ ui.py
 2. Select the desired computer vision function.
 3. Provide the required input video or CSV file.
 4. Run the selected process.
-5. Review the generated outputs or visualisations.
+5. Review the generated outputs or visualisations through the preview and in the selected folders for the data to be saved in.
 
 ## Notes
 
-This UI is designed as a prototype tool for running computer vision workflows related to crowd analysis. The focus is on functionality and supporting analysis rather than production-level interface design.
+For tracking, without a selection of model it will run the base yolo11n.pt model. For the test video provided I have trained a seperate model called best.pt. Different cameras will have different angles and FOV so a dedicated model should be trained for each cameras in the future to drastically improve accuracy.
+
+Additionally there are functions like the counting of higher density crowds called predict_single.py and predict_video.py that has yet to be added into the UI (due to time constraints) but are functioning scripts by themselves.
